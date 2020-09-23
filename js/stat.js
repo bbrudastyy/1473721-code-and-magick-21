@@ -17,7 +17,7 @@ const getRandomInt = (max) => {
   return Math.floor(Math.random() * Math.floor(max));
 };
 const getMaxElement = (arr) => {
-  const maxElement = arr[0];
+  let maxElement = arr[0];
 
   for (let i = 1; i < arr.length; i++) {
     if (arr[i] > maxElement) {
@@ -41,12 +41,21 @@ window.renderStatistics = (ctx, names, times) => {
 
   for (let i = 0; i < names.length; i++) {
     ctx.fillStyle = '000000';
-    ctx.fillText(names[i], CLOUD_X + FONT_GAP + (FONT_GAP + BAR_WIDTH) * i, CLOUD_Y + CLOUD_HEIGHT - 30);
-    ctx.fillText(Math.floor(times[i]), CLOUD_X + FONT_GAP + (FONT_GAP + BAR_WIDTH) * i, CLOUD_Y + CLOUD_HEIGHT - 40 - (BAR_HEIGHT * times[i] / maxTime) - 25);
+    const name = names[i];
+    const time = times[i];
+
+    const x = CLOUD_X + FONT_GAP + (FONT_GAP + BAR_WIDTH) * i;
+    const nameY = CLOUD_Y + CLOUD_HEIGHT - 30;
+    const barY = CLOUD_Y + CLOUD_HEIGHT - 40;
+    const barHeight = BAR_HEIGHT * time / maxTime;
+    const valueY = barY - barHeight - 25;
+
+    ctx.fillText(name, x, nameY);
+    ctx.fillText(Math.floor(time), x, valueY);
     ctx.fillStyle = `hsl(244, ${getRandomInt(100)}% , 44%)`;
     if (names[i] === "Вы") {
       ctx.fillStyle = 'hsl(0, 100%, 50%)';
     }
-    ctx.fillRect(CLOUD_X + FONT_GAP + (FONT_GAP + BAR_WIDTH) * i, CLOUD_Y + CLOUD_HEIGHT - 40, BAR_WIDTH, -(BAR_HEIGHT * times[i] / maxTime));
+    ctx.fillRect(x, barY, BAR_WIDTH, -barHeight);
   }
 };
