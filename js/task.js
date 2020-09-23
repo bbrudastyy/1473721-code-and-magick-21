@@ -1,21 +1,23 @@
-let fireballSize = 22;
+'use strict';
 
-function getFireballSpeed(isDirectionLeft) {
+var fireballSize = 22;
+
+var getFireballSpeed = (isDirectionLeft) => {
   return isDirectionLeft ? 2 : 5;
-}
+};
 
-let wizardSpeed = 3;
+var wizardSpeed = 3;
 
-let wizardWidth = 70;
+var wizardWidth = 70;
 
-function getWizardHeight(wizardWidth) {
+var getWizardHeight = (wizardWidth) => {
   return 1.337 * wizardWidth;
-}
+};
 
-function getWizardX(screenWidth) {
+var getWizardX = (screenWidth) => {
   return (screenWidth - wizardWidth) / 2;
-}
+};
 
-function getWizardY(screenHeight) {
+var getWizardY = (screenHeight) => {
   return screenHeight / 3;
-}
+};
