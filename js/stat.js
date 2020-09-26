@@ -9,16 +9,12 @@ const FONT_GAP = 50;
 const BAR_HEIGHT = 150;
 const BAR_WIDTH = 40;
 
-const renderCloud = (ctx, x, y, color) => {
+function renderCloud(ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
-};
+}
 
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * Math.floor(max));
-};
-
-const getMaxElement = (arr) => {
+function getMaxElement(arr) {
   let maxElement = arr[0];
 
   for (let i = 1; i < arr.length; i++) {
@@ -27,7 +23,8 @@ const getMaxElement = (arr) => {
     }
   }
   return maxElement;
-};
+}
+
 window.renderStatistics = (ctx, names, times) => {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
